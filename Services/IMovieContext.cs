@@ -3,31 +3,52 @@ using System.Collections.Generic;
 
 namespace MovieAPI.Services
 {
-    public interface IMovieContext : IGetMovies, IGetGenres, IGetRandomMovies, IGetRandomGenre
+    public interface IMovieContext : IGetMovies, IGetMoviesInGenre, IGetRandomMovieGenre, IAddMovie, IGetRandomMovieList, IGetGenreList, IGetMovieKeyWord, IGetMovie
     {
     }
 
     public interface IGetMovies
     {
-        IEnumerable<Movie> GetMovies();
+        IEnumerable<MovieTable> GetMovies();
     }
-    public interface IGetGenres
+
+    public interface IGetMovie
     {
-        IEnumerable<Movie> GetGenres();
+        MovieTable GetMovie(int id);
     }
-    public interface IGetRandomMovies
+
+    public interface IGetMoviesInGenre
     {
-        Movie GetRandomMovie(string Title);
+        IEnumerable<MovieTable> GetMoviesInGenre(string genre);
     }
-    public interface IGetRandomGenre
+    public interface IRandomGetMovie
     {
-        Movie GetRandomGenre(string Genre);
+        MovieTable GetRandomMovie();
     }
 
+    public interface IGetRandomMovieGenre
+    {
+        MovieTable GetRandomMovieInGenre(string genre);
+    }
 
+    public interface IAddMovie
+    {
+        MovieTable AddMovie(MovieTable movie);
+    }
 
+    public interface IGetRandomMovieList
+    {
+        IEnumerable<MovieTable> GetRandomMovieList(int number);
+    }
 
+    public interface IGetGenreList
+    {
+        IEnumerable<string> GetGenreList();
+    }
 
-
+    public interface IGetMovieKeyWord
+    {
+        IEnumerable<MovieTable> GetMovieByTitleKeyword(string word);
+    }
 
 }
